@@ -7,17 +7,17 @@ import getFromStorage from './modules/Storage.js';
 const allTasks = [
   {
     description: 'Cooking',
-    completed: true,
+    completed: false,
     index: 1,
   },
   {
     description: 'Washing dishes',
-    completed: true,
+    completed: false,
     index: 2,
   },
   {
     description: 'Taking a bath',
-    completed: true,
+    completed: false,
     index: 3,
   },
   {
