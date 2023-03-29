@@ -3,7 +3,6 @@ import displayTasks from './modules/Structure.js';
 import addTask from './modules/Add.js';
 import getFromStorage from './modules/Storage.js';
 
-// Create Tasks
 const allTasks = [
   {
     description: 'Cooking',
