@@ -1,15 +1,18 @@
-const deleteTask = (id) => {
-  const listDisplay = document.querySelector('.display-list');
-  let allTasks = JSON.parse(localStorage.getItem('todo'));
-  const ul = document.querySelector('.tasks-list');
+export default class Delete {
+  constructor() {
+    this.allTasks = JSON.parse(localStorage.getItem('todo')) || [];
+  }
 
-  allTasks = allTasks.filter((task) => task.index !== id);
-  allTasks.forEach((i, j) => {
-    i.index = j;
-  });
+  deleteTask = (id) => {
+    const listDisplay = document.querySelector('.display-list');
+    const ul = document.querySelector('.tasks-list');
 
-  allTasks = localStorage.setItem('todo', JSON.stringify(allTasks));
-  listDisplay.removeChild(ul);
-};
+    this.allTasks = this.allTasks.filter((task) => task.index !== id);
+    this.allTasks.forEach((i, j) => {
+      i.index = j;
+    });
 
-export default deleteTask;
+    localStorage.setItem('todo', JSON.stringify(this.allTasks));
+    listDisplay.removeChild(ul);
+  };
+}
