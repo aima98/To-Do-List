@@ -17,8 +17,8 @@
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
-- [🙏 Acknowledgements](#acknowledgements)
 - [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
@@ -108,22 +108,20 @@ Contributions, issues, and feature requests are welcome!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGEMENTS -->
-
-## 🙏 Acknowledgments <a name="acknowledgements"></a>
-
-I would like to thank all of my Microverse mates and mentors for their support.
-
-## Show your support
-
-Give a ⭐️ if you like this project!
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- SHOW YOUR SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
 If you like this project, give it a ⭐️ ! 
 Feel comfortable to endorse the author. You can contact the author via Twitter or Linkedin or directly message at oumanj1998@gmail.com.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank all of my Microverse mates and mentors for their support
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
