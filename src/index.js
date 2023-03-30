@@ -1,41 +1,36 @@
 import './style.css';
-
-const allTasks = [
-  {
-    description: 'Cooking',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Washing dishes',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Taking a bath',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Going to sleep',
-    completed: true,
-    index: 4,
-  },
-];
+import addTask from './modules/Add.js';
+import displayTasks from './modules/Structure.js';
+import deleteTask from './modules/Delete.js';
 
 const tasksListDisplay = document.querySelector('.display-list');
+const allTasks = JSON.parse(localStorage.getItem('todo')) || [];
 
 if (allTasks.length === 0) {
   tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
 }
 
-const tasks = allTasks.map((todo) => ` 
-  <div class="tasks">
-    <div class="task"><input type="checkbox" id="demoCheckbox" name="checkbox" value="1">
-      <label for="demoCheckbox">${todo.description}</label>
-    </div>
-    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-  </div>
-  `).join('');
+/* Adding a new task */
+addTask();
 
-tasksListDisplay.innerHTML = tasks;
+window.addEventListener('DOMContentLoaded', () => {
+  allTasks.forEach((i) => {
+    displayTasks(i);
+  });
+});
+
+/* Removing a task */
+tasksListDisplay.addEventListener('click', (e) => {
+  const target = e.target.closest('.fa-ellipsis-v');
+  const trash = e.target.closest('.fa-trash-can');
+
+  if (target) {
+    target.nextElementSibling.classList.toggle('show');
+    target.style.display = 'none';
+    deleteTask(Number(target.id));
+  }
+
+  if (trash) {
+    deleteTask(Number(trash.id));
+  }
+});

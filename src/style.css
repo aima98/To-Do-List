@@ -59,7 +59,7 @@ h3 {
 }
 
 .fa-arrow-left {
-  margin-right: 10px;
+  margin-left: 134px;
   cursor: pointer;
 }
 
@@ -68,6 +68,10 @@ h3 {
   outline: 0;
   font-size: 16px;
   cursor: auto;
+}
+
+.description {
+  border: none;
 }
 
 .completed {
