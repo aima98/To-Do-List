@@ -1,39 +1,46 @@
+import Helpers from './modules/Structure.js';
 import './style.css';
-import addTask from './modules/Add.js';
-import displayTasks from './modules/Structure.js';
-import Delete from './modules/Delete.js';
 
-const tasksListDisplay = document.querySelector('.display-list');
-const allTasks = JSON.parse(localStorage.getItem('todo')) || [];
-const deletion = new Delete();
+const task = new Helpers();
 
-if (allTasks.length === 0) {
-  tasksListDisplay.innerHTML = '<hr/><p>No tasks are available now!</p>';
+const list = document.getElementById('list');
+const form = document.querySelector('form');
+const inputField = document.querySelector('.list_input');
+
+function clearInputs() {
+  inputField.value = '';
 }
 
-/* Adding a new task */
-addTask();
-
-window.addEventListener('DOMContentLoaded', () => {
-  allTasks.forEach((i) => {
-    displayTasks(i);
-  });
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  task.addTask(task.taskList.length + 1, document.querySelector('.list_input').value);
+  clearInputs();
 });
 
-/* Removing a task */
-tasksListDisplay.addEventListener('click', (e) => {
-  const target = e.target.closest('.fa-ellipsis-v');
+list.addEventListener('click', (e) => {
+  const target = e.target.closest('.fa fa-ellipsis-v');
   const trash = e.target.closest('.fa-trash-can');
+  const description = e.target.closest('.description');
 
-  const listDisplay = document.querySelector('.display-list');
   if (target) {
     target.nextElementSibling.classList.toggle('show');
     target.style.display = 'none';
-    deletion.deleteTask(Number(target.id));
-    localStorage.setItem('todo', JSON.stringify(listDisplay));
   }
 
   if (trash) {
-    deletion.deleteTask(Number(trash.id));
+    task.removeTask(Number(trash.id));
+  }
+
+  if (description) {
+    task.editTask(description);
   }
 });
+
+list.addEventListener('focusout', (e) => {
+  const description = e.target.closest('.description');
+  if (description) {
+    task.displayEditedTask(description, Number(description.dataset.id));
+  }
+});
+
+window.onload = task.displayList();

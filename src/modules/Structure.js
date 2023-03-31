@@ -1,59 +1,80 @@
-import getFromStorage from './Storage.js';
-import deleteTask from './Delete.js';
+/* eslint-disable class-methods-use-this */
+import Task from './Tasks.js';
 
-const display = document.querySelector('.display-list');
-
-const displayTasks = (tasksObj) => {
-  const tasksList = document.createElement('ul');
-  tasksList.classList.add('tasks-list');
-  display.appendChild(tasksList);
-  const task = document.createElement('li');
-  task.classList.add('list-item');
-  tasksList.appendChild(task);
-
-  task.innerHTML = `
-    <div class='task'>
-      <input type='checkbox' class='checkbox' id='${tasksObj.index}'/>
-      <input class="description" type='text' value='${tasksObj.description}' id='input-display-${tasksObj.index}' data-id='${tasksObj.index}' class='input-display'/>
-    </div>
-    <i class="fa fa-ellipsis-v" aria-hidden="true" id="rmv-${tasksObj.index}"></i>
-    <i class="fa-solid fa-trash-can" data-id="${tasksObj.index}" id="btn-${tasksObj.index}"></i>
-  `;
-
-  const taskStatus = document.getElementById(tasksObj.index);
-  const inputDisplay = document.getElementById(`input-display-${tasksObj.index}`);
-
-  if (tasksObj.completed === true) {
-    taskStatus.checked = true;
-    inputDisplay.style.textDecoration = 'line-through';
-  } else {
-    taskStatus.checked = false;
-    inputDisplay.style.textDecoration = 'none';
+export default class Helpers {
+  constructor() {
+    this.taskList = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 
-  /* Removing tasks */
-  const removeBtn = document.getElementById(`btn-${tasksObj.index}`);
-  removeBtn.addEventListener('click', () => {
-    deleteTask(tasksObj.index);
-  });
+  addTask(index, value) {
+    if (value === '') return;
+    const newTask = new Task(index, value);
+    this.addToTaskList(newTask);
+    this.sortTasks();
+    this.updateStorage();
+    this.displayList();
+  }
 
-  /* Updating tasks */
-  const editTasks = document.getElementById(`input-display-${tasksObj.index}`);
-  editTasks.addEventListener('change', () => {
-    const task = document.getElementById(`input-display-${tasksObj.index}`);
-    let allTasks = JSON.parse(getFromStorage('todo'));
-    allTasks.forEach((item) => {
-      if (item.index === tasksObj.index) {
-        item.description = task.value;
-      }
-    });
-    allTasks = localStorage.setItem('todo', JSON.stringify(allTasks));
-    display.innerHTML = '';
-    allTasks = JSON.parse(getFromStorage('todo'));
-    allTasks.forEach((i) => {
-      displayTasks(i);
-    });
-  });
-};
+  addToTaskList(task) {
+    this.taskList.push(task);
+  }
 
-export default displayTasks;
+  displayList() {
+    document.querySelector('.list').style.display = 'block';
+
+    if (this.taskList.length === 0) {
+      document.querySelector('.list').style.display = 'none';
+    }
+    document.querySelector('.list').innerHTML = `
+    ${this.setListItems(this.taskList)}
+    `;
+  }
+
+  removeTask(i) {
+    this.taskList = this.taskList.filter((item) => item.index !== i);
+    this.taskList.forEach((item, i) => {
+      item.index = i + 1;
+    });
+    this.sortTasks();
+    this.updateStorage();
+    this.displayList();
+  }
+
+  setListItems(arr) {
+    let listItems = '';
+    for (let i = 0; i < arr.length; i += 1) {
+      listItems += `
+      <li class='list_item'>
+      <div>
+        <input type='checkbox' class='check_item'>
+        <span class='description' data-id=${arr[i].index}>${arr[i].description}</span>
+      </div>
+        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+        <i class="fa-solid fa-trash-can" id=${arr[i].index}></i>
+      </li>
+      `;
+    }
+    return listItems;
+  }
+
+  sortTasks() {
+    this.taskList.sort((a, b) => a.index - b.index);
+  }
+
+  editTask(desc) {
+    desc.setAttribute('contenteditable', 'true');
+    desc.focus();
+  }
+
+  displayEditedTask(elem, index) {
+    elem.setAttribute('contenteditable', 'false');
+    const objIndex = this.taskList.findIndex((obj) => obj.index === index);
+    this.taskList[objIndex].description = elem.innerText;
+    this.sortTasks();
+    this.updateStorage();
+  }
+
+  updateStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.taskList));
+  }
+}
