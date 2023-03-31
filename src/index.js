@@ -1,41 +1,46 @@
+import Helpers from './modules/Structure.js';
 import './style.css';
 
-const allTasks = [
-  {
-    description: 'Cooking',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Washing dishes',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Taking a bath',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Going to sleep',
-    completed: true,
-    index: 4,
-  },
-];
+const task = new Helpers();
 
-const tasksListDisplay = document.querySelector('.display-list');
+const list = document.getElementById('list');
+const form = document.querySelector('form');
+const inputField = document.querySelector('.list_input');
 
-if (allTasks.length === 0) {
-  tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
+function clearInputs() {
+  inputField.value = '';
 }
 
-const tasks = allTasks.map((todo) => ` 
-  <div class="tasks">
-    <div class="task"><input type="checkbox" id="demoCheckbox" name="checkbox" value="1">
-      <label for="demoCheckbox">${todo.description}</label>
-    </div>
-    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-  </div>
-  `).join('');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  task.addTask(task.taskList.length + 1, document.querySelector('.list_input').value);
+  clearInputs();
+});
 
-tasksListDisplay.innerHTML = tasks;
+list.addEventListener('click', (e) => {
+  const target = e.target.closest('.fa fa-ellipsis-v');
+  const trash = e.target.closest('.fa-trash-can');
+  const description = e.target.closest('.description');
+
+  if (target) {
+    target.nextElementSibling.classList.toggle('show');
+    target.style.display = 'none';
+  }
+
+  if (trash) {
+    task.removeTask(Number(trash.id));
+  }
+
+  if (description) {
+    task.editTask(description);
+  }
+});
+
+list.addEventListener('focusout', (e) => {
+  const description = e.target.closest('.description');
+  if (description) {
+    task.displayEditedTask(description, Number(description.dataset.id));
+  }
+});
+
+window.onload = task.displayList();
