@@ -18,31 +18,30 @@ describe('add list item', () => {
   });
 });
 
-
-describe("removeTask", () => {
+describe('remove item', () => {
   let taskList;
 
   beforeEach(() => {
     taskList = [
-      { index: 1, description: "Task 1" },
-      { index: 2, description: "Task 2" },
-      { index: 3, description: "Task 3" },
+      { index: 1, description: 'Task 1' },
+      { index: 2, description: 'Task 2' },
+      { index: 3, description: 'Task 3' },
     ];
   });
 
-  it("should remove the task with the given index from the task list", () => {
-    const app = new App();
+  it('should remove the task with the given index from the task list', () => {
+    const app = new Helpers();
     app.taskList = taskList;
     const indexToRemove = 2;
     app.removeTask(indexToRemove);
     expect(app.taskList).toEqual([
-      { index: 1, description: "Task 1" },
-      { index: 2, description: "Task 3" },
+      { index: 1, description: 'Task 1' },
+      { index: 2, description: 'Task 3' },
     ]);
   });
 
-  it("should update the index of the remaining tasks", () => {
-    const app = new App();
+  it('should update the index of the remaining tasks', () => {
+    const app = new Helpers();
     app.taskList = taskList;
     const indexToRemove = 2;
     app.removeTask(indexToRemove);
@@ -50,19 +49,19 @@ describe("removeTask", () => {
     expect(app.taskList[1].index).toBe(2);
   });
 
-  it("should sort the tasks by index after removing one", () => {
-    const app = new App();
+  it('should sort the tasks by index after removing one', () => {
+    const app = new Helpers();
     app.taskList = taskList;
     const indexToRemove = 2;
     app.removeTask(indexToRemove);
     expect(app.taskList).toEqual([
-      { index: 1, description: "Task 1" },
-      { index: 2, description: "Task 3" },
+      { index: 1, description: 'Task 1' },
+      { index: 2, description: 'Task 3' },
     ]);
   });
 
-  it("should update the storage and display the list after removing a task", () => {
-    const app = new App();
+  it('should update the storage and display the list after removing a task', () => {
+    const app = new Helpers();
     app.taskList = taskList;
     app.removeTask(2);
     expect(app.updateStorage).toHaveBeenCalled();
