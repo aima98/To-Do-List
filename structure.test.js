@@ -22,11 +22,7 @@ describe('remove item', () => {
   let taskList;
 
   beforeEach(() => {
-    taskList = [
-      { index: 1, description: 'Task 1' },
-      { index: 2, description: 'Task 2' },
-      { index: 3, description: 'Task 3' },
-    ];
+    taskList = [      { index: 1, description: 'Task 1' },      { index: 2, description: 'Task 2' },      { index: 3, description: 'Task 3' },    ];
   });
 
   it('should remove the task with the given index from the task list', () => {
@@ -63,6 +59,8 @@ describe('remove item', () => {
   it('should update the storage and display the list after removing a task', () => {
     const app = new Helpers();
     app.taskList = taskList;
+    app.updateStorage = jest.fn();
+    app.displayList = jest.fn(); 
     app.removeTask(2);
     expect(app.updateStorage).toHaveBeenCalled();
     expect(app.displayList).toHaveBeenCalled();

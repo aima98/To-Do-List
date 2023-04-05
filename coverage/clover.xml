@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680729736632" clover="3.2.0">
-  <project timestamp="1680729736632" name="All files">
+<coverage generated="1680731034968" clover="3.2.0">
+  <project timestamp="1680731034968" name="All files">
     <metrics statements="34" coveredstatements="26" conditionals="7" coveredconditionals="5" methods="15" coveredmethods="12" elements="56" coveredelements="43" complexity="0" loc="34" ncloc="34" packages="1" files="2" classes="2"/>
-    <file name="Structure.js" path="C:\Users\DELL\Desktop\Microverse Repositeries\To-Do-List\src\modules\Structure.js">
+    <file name="Structure.js" path="C:\Users\HOME PC\Desktop\repoLib\To-Do-List\src\modules\Structure.js">
       <metrics statements="31" coveredstatements="23" conditionals="6" coveredconditionals="4" methods="14" coveredmethods="11"/>
       <line num="6" count="5" type="cond" truecount="2" falsecount="0"/>
       <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
@@ -12,20 +12,20 @@
       <line num="14" count="1" type="stmt"/>
       <line num="15" count="1" type="stmt"/>
       <line num="19" count="1" type="stmt"/>
-      <line num="23" count="5" type="stmt"/>
-      <line num="25" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="23" count="4" type="stmt"/>
+      <line num="25" count="4" type="cond" truecount="1" falsecount="1"/>
       <line num="26" count="0" type="stmt"/>
-      <line num="28" count="5" type="stmt"/>
+      <line num="28" count="4" type="stmt"/>
       <line num="34" count="12" type="stmt"/>
       <line num="35" count="4" type="stmt"/>
       <line num="36" count="8" type="stmt"/>
       <line num="38" count="4" type="stmt"/>
       <line num="39" count="4" type="stmt"/>
       <line num="40" count="4" type="stmt"/>
-      <line num="44" count="5" type="stmt"/>
-      <line num="45" count="5" type="stmt"/>
-      <line num="46" count="9" type="stmt"/>
-      <line num="57" count="5" type="stmt"/>
+      <line num="44" count="4" type="stmt"/>
+      <line num="45" count="4" type="stmt"/>
+      <line num="46" count="7" type="stmt"/>
+      <line num="57" count="4" type="stmt"/>
       <line num="61" count="5" type="stmt"/>
       <line num="65" count="0" type="stmt"/>
       <line num="66" count="0" type="stmt"/>
@@ -34,9 +34,9 @@
       <line num="72" count="0" type="stmt"/>
       <line num="73" count="0" type="stmt"/>
       <line num="74" count="0" type="stmt"/>
-      <line num="78" count="5" type="stmt"/>
+      <line num="78" count="4" type="stmt"/>
     </file>
-    <file name="Tasks.js" path="C:\Users\DELL\Desktop\Microverse Repositeries\To-Do-List\src\modules\Tasks.js">
+    <file name="Tasks.js" path="C:\Users\HOME PC\Desktop\repoLib\To-Do-List\src\modules\Tasks.js">
       <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
