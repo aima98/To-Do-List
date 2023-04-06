@@ -61,15 +61,14 @@ export default class Helpers {
     this.taskList.sort((a, b) => a.index - b.index);
   }
 
-  editTask(desc) {
-    desc.setAttribute('contenteditable', 'true');
-    desc.focus();
+  editTaskList(value, index) {
+    const objIndex = this.taskList.findIndex((obj) => obj.index === index);
+    this.taskList[objIndex].description = value;
   }
 
   displayEditedTask(elem, index) {
     elem.setAttribute('contenteditable', 'false');
-    const objIndex = this.taskList.findIndex((obj) => obj.index === index);
-    this.taskList[objIndex].description = elem.innerText;
+    this.editTaskList(elem.innerText, index);
     this.sortTasks();
     this.updateStorage();
   }
